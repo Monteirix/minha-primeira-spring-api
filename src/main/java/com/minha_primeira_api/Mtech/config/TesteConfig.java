@@ -1,8 +1,10 @@
 package com.minha_primeira_api.Mtech.config;
 
+import com.minha_primeira_api.Mtech.entities.Category;
 import com.minha_primeira_api.Mtech.entities.Order;
 import com.minha_primeira_api.Mtech.entities.User;
 import com.minha_primeira_api.Mtech.entities.enums.OrderStatus;
+import com.minha_primeira_api.Mtech.repositories.CategoryRepository;
 import com.minha_primeira_api.Mtech.repositories.OrderRepository;
 import com.minha_primeira_api.Mtech.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,13 @@ public class TesteConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 
@@ -33,8 +40,14 @@ public class TesteConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT ,u1);
 
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
 
     }
 }
