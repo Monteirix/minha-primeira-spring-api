@@ -1,5 +1,6 @@
 package com.minha_primeira_api.Mtech.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,7 +18,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category() {
@@ -48,18 +50,22 @@ public class Category implements Serializable {
     public Set<Product> getProducts() {
         return products;
     }
+
+
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+
         Category category = (Category) o;
-        return Objects.equals(id, category.id);
+
+        return id != null && id.equals(category.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return getClass().hashCode();
     }
-
 
 
 }
