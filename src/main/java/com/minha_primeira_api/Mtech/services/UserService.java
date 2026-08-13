@@ -32,16 +32,16 @@ public class UserService {
     }
 
     public void delete(Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException(id);
+        }
 
         try {
             repository.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
-            throw new ResourceNotFoundException(id);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DataBaseException(e.getMessage());
         }
-
-        }
+    }
 
     public User update(Long id, User obj){
         User entity = repository.getReferenceById(id);
