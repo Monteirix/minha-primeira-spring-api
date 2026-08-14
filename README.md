@@ -385,5 +385,5 @@ As funcionalidades abaixo **não fazem parte da implementação atual** e repres
 
 Estudante de Análise e Desenvolvimento de Sistemas com foco em desenvolvimento Backend utilizando Java e Spring Boot.
 
-* LinkedIn: `[adicionar link]`
-* GitHub: `[adicionar link]`
+* LinkedIn: `https://www.linkedin.com/in/matheus-monteiro-5033a923b`
+* GitHub: `https://github.com/Monteirix`
